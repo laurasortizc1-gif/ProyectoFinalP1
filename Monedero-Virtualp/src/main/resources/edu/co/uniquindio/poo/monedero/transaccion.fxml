@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12"
+      fx:controller="edu.co.uniquindio.poo.monedero.viewController.TransaccionViewController"
+      stylesheets="@styles.css"
+      xmlns:fx="http://javafx.com/fxml">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <children>
+
+        <Label text="Transacciones" styleClass="title"/>
+        <Label fx:id="lblInfo" wrapText="true"/>
+
+        <ComboBox fx:id="cbTipoTransaccion" promptText="Tipo de transacción" prefWidth="260"/>
+
+        <TextField fx:id="txtMonto" promptText="Monto" maxWidth="260"/>
+
+        <Label text="Destino (solo transferencias)" styleClass="subtitle"/>
+        <HBox spacing="10">
+            <children>
+                <ComboBox fx:id="cbDestino" promptText="Cliente destino" prefWidth="200"/>
+                <ComboBox fx:id="cbMonederoDestino" promptText="Monedero destino" prefWidth="240"/>
+            </children>
+        </HBox>
+
+        <Label text="Programación (opcional)" styleClass="subtitle"/>
+        <CheckBox fx:id="chkProgramar" text="Programar esta transacción"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <children>
+                <DatePicker fx:id="dpFecha" promptText="Fecha"/>
+                <TextField fx:id="txtHora" promptText="HH:mm" prefWidth="80"/>
+                <ComboBox fx:id="cbFrecuencia" prefWidth="160"/>
+            </children>
+        </HBox>
+
+        <HBox spacing="10">
+            <children>
+                <Button text="Ejecutar" onAction="#ejecutarTransaccion"/>
+                <Button text="Volver" onAction="#volver"/>
+            </children>
+        </HBox>
+
+        <Label text="Comisiones: retiro 0,5 % · transferencia 1 % (sin costo entre monederos propios). El rango y los beneficios las reducen."
+               wrapText="true"/>
+
+    </children>
+
+</VBox>

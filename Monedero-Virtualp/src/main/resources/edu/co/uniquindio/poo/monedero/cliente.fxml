@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.co.uniquindio.poo.monedero.viewController.ClienteViewController">
+
+    <padding>
+        <Insets bottom="15" left="15" right="15" top="15"/>
+    </padding>
+
+    <children>
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <children>
+                <Label styleClass="title" text="Cliente:"/>
+                <Label fx:id="lblNombre" styleClass="title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button onAction="#volver" text="Volver"/>
+            </children>
+        </HBox>
+
+        <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <tabs>
+
+                <!-- ================= RESUMEN ================= -->
+                <Tab text="Resumen y monederos">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                            <children>
+                                <GridPane hgap="15" vgap="8">
+                                    <children>
+                                        <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <Label fx:id="lblEmail" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Teléfono:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <Label fx:id="lblTelefono" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Label text="Saldo total:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                        <Label fx:id="lblSaldoTotal" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                        <Label text="Puntos acumulados:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <Label fx:id="lblPuntos" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Label text="Puntos disponibles:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                        <Label fx:id="lblPuntosDisponibles" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                                        <Label text="Rango:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                                        <Label fx:id="lblRango" styleClass="rango" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                                        <Label text="Beneficios del rango:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                                        <Label fx:id="lblBeneficiosRango" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+
+                                        <Label text="Notificar por:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                        <ComboBox fx:id="cbCanal" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                    </children>
+                                </GridPane>
+
+                                <Label styleClass="subtitle" text="Monederos del cliente:"/>
+                                <TableView fx:id="tablaMonederos" VBox.vgrow="ALWAYS">
+                                    <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                                    <columns>
+                                        <TableColumn fx:id="colNombreMonedero" text="Nombre"/>
+                                        <TableColumn fx:id="colSaldoMonedero" text="Saldo"/>
+                                    </columns>
+                                </TableView>
+                                <Button onAction="#abrirMonedero" text="Ver monedero / Realizar transacción"/>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- ================= PUNTOS ================= -->
+                <Tab text="Puntos y beneficios">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                            <children>
+                                <Label styleClass="subtitle" text="Canjear puntos"/>
+                                <HBox spacing="10" alignment="CENTER_LEFT">
+                                    <children>
+                                        <ComboBox fx:id="cbBeneficios" promptText="Seleccione un beneficio" prefWidth="380"/>
+                                        <Button onAction="#canjearBeneficio" text="Canjear"/>
+                                    </children>
+                                </HBox>
+                                <Label fx:id="lblBeneficiosActivos"/>
+                                <Label text="Rangos: Bronce 0–500 · Plata 501–1000 · Oro 1001–5000 · Platino &gt;5000"/>
+
+                                <Label styleClass="subtitle" text="Historial de puntos"/>
+                                <TableView fx:id="tablaPuntos" VBox.vgrow="ALWAYS">
+                                    <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                                    <columns>
+                                        <TableColumn fx:id="colFechaPuntos" text="Fecha"/>
+                                        <TableColumn fx:id="colTipoPuntos" text="Movimiento"/>
+                                        <TableColumn fx:id="colDescPuntos" text="Descripción"/>
+                                        <TableColumn fx:id="colCantPuntos" text="Puntos"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- ================= PROGRAMADAS ================= -->
+                <Tab text="Programadas">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                            <children>
+                                <Label styleClass="subtitle" text="Transacciones programadas (ordenadas por fecha)"/>
+                                <TableView fx:id="tablaProgramadas" VBox.vgrow="ALWAYS">
+                                    <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                                    <columns>
+                                        <TableColumn fx:id="colProgFecha" text="Próxima ejecución"/>
+                                        <TableColumn fx:id="colProgTipo" text="Tipo"/>
+                                        <TableColumn fx:id="colProgMonto" text="Monto"/>
+                                        <TableColumn fx:id="colProgFrecuencia" text="Frecuencia"/>
+                                        <TableColumn fx:id="colProgDestino" text="Destino"/>
+                                        <TableColumn fx:id="colProgEstado" text="Estado"/>
+                                        <TableColumn fx:id="colProgResultado" text="Último resultado"/>
+                                    </columns>
+                                </TableView>
+                                <HBox spacing="10">
+                                    <children>
+                                        <Button onAction="#procesarProgramadas" text="Procesar pendientes ahora"/>
+                                        <Button onAction="#cancelarProgramada" text="Cancelar seleccionada"/>
+                                    </children>
+                                </HBox>
+                                <Label text="Para programar una nueva: abra un monedero → Realizar transacción → marque 'Programar'."/>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- ================= REPORTES ================= -->
+                <Tab text="Reportes y atípicas">
+                    <content>
+                        <HBox spacing="10">
+                            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                            <children>
+                                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox spacing="10">
+                                            <children>
+                                                <Button onAction="#generarReporte" text="Reporte de gastos"/>
+                                                <Button onAction="#analizarAtipicas" text="Detectar atípicas"/>
+                                            </children>
+                                        </HBox>
+                                        <TextArea fx:id="txtReporte" editable="false" wrapText="true"
+                                                  styleClass="reporte" VBox.vgrow="ALWAYS"/>
+                                    </children>
+                                </VBox>
+                                <BarChart fx:id="graficoGastos" title="Gasto por mes" legendVisible="false"
+                                          animated="false" prefWidth="380" HBox.hgrow="ALWAYS">
+                                    <xAxis><CategoryAxis side="BOTTOM"/></xAxis>
+                                    <yAxis><NumberAxis side="LEFT"/></yAxis>
+                                </BarChart>
+                            </children>
+                        </HBox>
+                    </content>
+                </Tab>
+
+                <!-- ================= NOTIFICACIONES ================= -->
+                <Tab text="Notificaciones">
+                    <content>
+                        <VBox spacing="10">
+                            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                            <children>
+                                <Label styleClass="subtitle" text="Alertas enviadas (Gmail / SMS / WhatsApp simulados)"/>
+                                <ListView fx:id="listaNotificaciones" VBox.vgrow="ALWAYS"/>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</VBox>

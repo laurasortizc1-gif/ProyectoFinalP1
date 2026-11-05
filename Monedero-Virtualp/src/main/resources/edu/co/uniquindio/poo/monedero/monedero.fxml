@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="12"
+      fx:controller="edu.co.uniquindio.poo.monedero.viewController.MonederoViewController"
+      stylesheets="@styles.css"
+      xmlns:fx="http://javafx.com/fxml">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <children>
+
+        <Label text="Monedero" styleClass="title"/>
+
+        <HBox spacing="10">
+            <children>
+                <Label text="Nombre:"/>
+                <Label fx:id="lblNombreMonedero"/>
+            </children>
+        </HBox>
+
+        <HBox spacing="10">
+            <children>
+                <Label text="Saldo:"/>
+                <Label fx:id="lblSaldo" styleClass="subtitle"/>
+            </children>
+        </HBox>
+
+        <HBox spacing="10">
+            <children>
+                <Button text="Realizar Transacción" onAction="#abrirTransaccion"/>
+                <Button text="Revertir seleccionada" onAction="#revertirTransaccion"/>
+            </children>
+        </HBox>
+
+        <Label text="Historial de Transacciones:" styleClass="subtitle"/>
+
+        <TableView fx:id="tablaHistorial" VBox.vgrow="ALWAYS">
+            <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="colIdTrans" text="#"/>
+                <TableColumn fx:id="colTipoTrans" text="Tipo"/>
+                <TableColumn fx:id="colMontoTrans" text="Monto"/>
+                <TableColumn fx:id="colComisionTrans" text="Comisión"/>
+                <TableColumn fx:id="colPuntosTrans" text="Puntos"/>
+                <TableColumn fx:id="colFechaTrans" text="Fecha"/>
+                <TableColumn fx:id="colEstadoTrans" text="Estado"/>
+            </columns>
+        </TableView>
+
+        <Button text="Volver" onAction="#volver"/>
+
+    </children>
+
+</VBox>
