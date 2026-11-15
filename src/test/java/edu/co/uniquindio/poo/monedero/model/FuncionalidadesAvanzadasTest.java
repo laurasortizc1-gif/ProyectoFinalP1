@@ -1,4 +1,4 @@
-package edu.co.uniquindio.poo.monedero;
+package edu.co.uniquindio.poo.monedero.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import edu.co.uniquindio.poo.monedero.controller.TransaccionController;
 import edu.co.uniquindio.poo.monedero.exceptions.*;
-import edu.co.uniquindio.poo.monedero.model.*;
 import edu.co.uniquindio.poo.monedero.service.*;
 import edu.co.uniquindio.poo.monedero.util.Ordenamiento;
 

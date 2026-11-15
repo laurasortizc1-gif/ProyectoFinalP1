@@ -15,7 +15,7 @@ module edu.co.uniquindio.poo.monedero {
     requires java.logging;
 
     opens edu.co.uniquindio.poo.monedero.viewController to javafx.fxml;
-    opens edu.co.uniquindio.poo.monedero.model to javafx.base;
+    opens edu.co.uniquindio.poo.monedero.model to javafx.base, org.junit.platform.commons;
     opens edu.co.uniquindio.poo.monedero.app to javafx.fxml;
 
     exports edu.co.uniquindio.poo.monedero.app;

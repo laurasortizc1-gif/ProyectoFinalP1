@@ -1,4 +1,4 @@
-package edu.co.uniquindio.poo.monedero;
+package edu.co.uniquindio.poo.monedero.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import edu.co.uniquindio.poo.monedero.controller.BancoController;
 import edu.co.uniquindio.poo.monedero.exceptions.*;
-import edu.co.uniquindio.poo.monedero.model.*;
 
 public class BancoTest {
 

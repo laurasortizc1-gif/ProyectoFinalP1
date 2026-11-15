@@ -33,7 +33,9 @@ public class Transferencia extends Transaccion {
         destino.registrarTransaccion(this); // el receptor también la ve en su historial
     }
 
-    /** Si no se eligió monedero destino se usa el primero del cliente destino. */
+    /**
+     * Si no se eligió monedero destino se usa el primero del cliente destino.
+     */
     private Monedero resolverDestino() {
         if (monederoDestino != null) {
             if (!clienteDestino.getMonederos().contains(monederoDestino)) {
@@ -68,7 +70,9 @@ public class Transferencia extends Transaccion {
         return monto * Tarifas.COMISION_TRANSFERENCIA;
     }
 
-    /** Descuento por rango + beneficio "10% menos en comisión por transferencias". */
+    /**
+     * Descuento por rango + beneficio "10% menos en comisión por transferencias".
+     */
     @Override
     public double aplicarBeneficios(Cliente cliente, double comisionBase) {
         double comisionFinal = comisionBase * (1 - cliente.getRango().getDescuentoComision());
@@ -85,6 +89,9 @@ public class Transferencia extends Transaccion {
 
     @Override
     public int calcularPuntos() {
+        if (clienteOrigen != null && clienteOrigen == clienteDestino) {
+            return 0;
+        }
         return (int) (monto / 100) * 3;
     }
 }
