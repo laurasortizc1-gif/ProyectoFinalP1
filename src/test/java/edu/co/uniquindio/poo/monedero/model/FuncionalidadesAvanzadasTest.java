@@ -37,7 +37,7 @@ public class FuncionalidadesAvanzadasTest {
         mAna.setSaldo(100000);
     }
 
-    // ---------------- Puntos y rangos ----------------
+    //  Puntos y rangos
 
     @Test
     public void puntosSegunTipoDeTransaccion() {
@@ -70,7 +70,7 @@ public class FuncionalidadesAvanzadasTest {
         assertThrows(TransaccionNoReversibleException.class, () -> tc.revertirTransaccion(t));
     }
 
-    // ---------------- Canje de beneficios ----------------
+    //  Canje de beneficios
 
     @Test
     public void canjeSinPuntosLanzaExcepcion() {
@@ -107,7 +107,7 @@ public class FuncionalidadesAvanzadasTest {
         assertEquals(90, t2.getComision()); // 10 % menos
     }
 
-    // ---------------- Multimonedero ----------------
+    //  Multimonedero
 
     @Test
     public void transferenciaEntreMonederosPropiosSinComision() {
@@ -121,7 +121,7 @@ public class FuncionalidadesAvanzadasTest {
         assertEquals(100000, ana.getSaldoTotal());
     }
 
-    // ---------------- Atípicas ----------------
+    // Atípicas
 
     @Test
     public void detectaTransaccionAtipica() {
@@ -146,7 +146,7 @@ public class FuncionalidadesAvanzadasTest {
         assertEquals(9.0, e.umbral(), 1e-9);
     }
 
-    // ---------------- Programadas y ordenamiento ----------------
+    //  Programadas y ordenamiento
 
     @Test
     public void mergeSortOrdenaCorrectamente() {
@@ -190,7 +190,7 @@ public class FuncionalidadesAvanzadasTest {
                 null, null, LocalDateTime.now().minusDays(1), Frecuencia.UNICA));
     }
 
-    // ---------------- Reportes y alertas ----------------
+    //  Reportes y alertas
 
     @Test
     public void reporteAgrupaGastosPorTipo() {

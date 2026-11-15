@@ -98,7 +98,7 @@ public abstract class Transaccion implements ITransaccion {
         return "OK";
     }
 
-    // ---------------- Getters / Setters ----------------
+    // Getters / Setters
 
     public int getIdTransaccion() { return idTransaccion; }
     public void setIdTransaccion(int idTransaccion) { this.idTransaccion = idTransaccion; }
